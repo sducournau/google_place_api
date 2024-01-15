@@ -1,0 +1,12 @@
+
+
+version: "3.3"
+services:
+  anaconda:
+    image: continuumio/miniconda3
+    container_name: anaconda
+    volumes:
+    - ./notebooks:/opt/notebooks
+    ports:
+    - 8888:8888
+    command: bash -c "conda install anaconda::pymongo anaconda::bs4 anaconda::requests anaconda::pandas anaconda::psycopg2 jupyterlab -y --quiet && pip install -q cartoframes && mkdir -p /opt/notebooks && jupyter lab --notebook-dir=/opt/notebooks --ip='*' --port=8888 --no-browser --allow-root"
